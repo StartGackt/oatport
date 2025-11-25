@@ -20,17 +20,17 @@ const Hero = () => {
                             variants={container(0)}
                             initial='hidden'
                             animate='visible'
-                            className="pb-16 text-6xl font-thin tracking-tight lg:mt-16 lg:text-6xl">Oat Srichainiwas</motion.h1>
+                            className="pb-16 text-6xl font-thin tracking-tight lg:mt-16 lg:text-6xl">OAT SRICHAINIWAS</motion.h1>
                         <motion.span
                          variants={container(0.5)}
                          initial='hidden'
                          animate='visible'
-                         className="bg-gradient-to-r from-pink-300 to-purple-500 bg-clip-text text-4xl tracking-tight text-transparent">Data Science Engineer</motion.span>
+                         className="bg-gradient-to-r from-pink-300 to-purple-500 bg-clip-text text-4xl tracking-tight text-transparent">Full Stack Developer</motion.span>
                         <motion.p
                          variants={container(1)}
                          initial='hidden'
                          animate='visible'
-                        className="my-2 max-w-xl py-6 font-light tracking-tight ">I am a passionate full stack developer and data scientist with a knack for crafting robust and scalable web applications and insightful data-driven solutions, I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, PostgreSQL, and MongoDB. Additionally, I possess strong expertise in data science using Python, Pandas, Scikit-learn, and TensorFlow. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences by integrating advanced data analytics and machine learning capabilities.</motion.p>
+                        className="my-2 max-w-xl py-6 font-light tracking-tight ">Currently focused on expanding my expertise in full-stack development while pursuing my education. Quick learner with proven ability to adapt to new technologies and contribute effectively to team projects. Passionate about creating efficient, high-performance software solutions that solve real business challenges.</motion.p>
                     </div>
                 </div>
                 <div className="w-full lg:w-1/2 lg:p-8">
