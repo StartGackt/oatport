@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaGithub, FaLinkedin, FaPaperPlane } from 'react-icons/fa'
+import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaGithub, FaLinkedin, FaPaperPlane, FaCheck, FaExclamationTriangle } from 'react-icons/fa'
 import { HiOutlineSparkles } from 'react-icons/hi'
 
 const contactInfo = [
@@ -38,7 +39,58 @@ const fadeIn = {
   transition: { duration: 0.5 }
 }
 
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [status, setStatus] = useState<FormStatus>('idle')
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('submitting')
+
+    try {
+      // Using Formspree - replace with your form ID
+      const response = await fetch('https://formspree.io/f/xkgwqzqd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        })
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        // Reset status after 5 seconds
+        setTimeout(() => setStatus('idle'), 5000)
+      } else {
+        throw new Error('Form submission failed')
+      }
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 5000)
+    }
+  }
+
   return (
     <section id="contact" className="py-32 relative">
       {/* Background decorations - static for performance */}
@@ -65,7 +117,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left - Contact Cards */}
+          {/* Left - Contact Info & Cards */}
           <motion.div {...fadeIn} className="space-y-6">
             {contactInfo.map((info, index) => (
               <motion.div
@@ -121,43 +173,121 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right - CTA Card */}
-          <motion.div
-            {...fadeIn}
-            className="flex items-center"
-          >
-            <div className="w-full p-10 rounded-3xl glass-card relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
-              {/* Static gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-pink-500/10" />
+          {/* Right - Contact Form */}
+          <motion.div {...fadeIn}>
+            <div className="p-8 rounded-3xl glass-card relative overflow-hidden">
+              {/* Gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5" />
 
-              <div className="relative z-10 text-center">
-                {/* Icon */}
-                <div className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl shadow-purple-500/30">
-                  <FaPaperPlane className="text-4xl text-white" />
-                </div>
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-2">Send me a message</h3>
+                <p className="text-gray-400 mb-8">I'll get back to you within 24 hours</p>
 
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Ready to Start?
-                </h3>
-                <p className="text-gray-400 mb-8 leading-relaxed">
-                  Whether you have a project, an idea, or just want to say hi —
-                  I'd love to hear from you. Let's build something amazing together!
-                </p>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Name & Email Row */}
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="name" className="block text-sm text-gray-400 mb-2">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3.5 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm text-gray-400 mb-2">
+                        Your Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="john@example.com"
+                        className="w-full px-4 py-3.5 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none transition-all"
+                      />
+                    </div>
+                  </div>
 
-                {/* CTA Button */}
-                <a
-                  href="mailto:Thestackdev2001@outlook.com"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-semibold shadow-xl shadow-cyan-500/25 hover:shadow-2xl hover:shadow-cyan-500/40 hover:scale-105 transition-all duration-300"
-                >
-                  <FaEnvelope />
-                  <span>Send me an Email</span>
-                </a>
+                  {/* Subject */}
+                  <div>
+                    <label htmlFor="subject" className="block text-sm text-gray-400 mb-2">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      placeholder="Project Inquiry"
+                      className="w-full px-4 py-3.5 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none transition-all"
+                    />
+                  </div>
 
-                {/* Response time */}
-                <p className="mt-6 text-sm text-gray-500 flex items-center justify-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  Usually responds within 24 hours
-                </p>
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm text-gray-400 mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      placeholder="Tell me about your project..."
+                      className="w-full px-4 py-3.5 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none transition-all resize-none"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <motion.button
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    whileHover={{ scale: status === 'submitting' ? 1 : 1.02 }}
+                    whileTap={{ scale: status === 'submitting' ? 1 : 0.98 }}
+                    className={`w-full flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold shadow-xl transition-all duration-300 ${status === 'success'
+                        ? 'bg-green-500 text-white shadow-green-500/25'
+                        : status === 'error'
+                          ? 'bg-red-500 text-white shadow-red-500/25'
+                          : 'bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white shadow-cyan-500/25 hover:shadow-cyan-500/40'
+                      } disabled:opacity-70 disabled:cursor-not-allowed`}
+                  >
+                    {status === 'submitting' ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Sending...
+                      </>
+                    ) : status === 'success' ? (
+                      <>
+                        <FaCheck />
+                        Message Sent!
+                      </>
+                    ) : status === 'error' ? (
+                      <>
+                        <FaExclamationTriangle />
+                        Failed - Try Again
+                      </>
+                    ) : (
+                      <>
+                        <FaPaperPlane />
+                        Send Message
+                      </>
+                    )}
+                  </motion.button>
+                </form>
               </div>
             </div>
           </motion.div>

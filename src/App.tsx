@@ -7,6 +7,7 @@ import './index.css'
 const About = lazy(() => import('./components/About'))
 const Tech = lazy(() => import('./components/Tech'))
 const Exper = lazy(() => import('./components/Exper'))
+const Certificates = lazy(() => import('./components/Certificates'))
 const Project = lazy(() => import('./components/Project'))
 const Contact = lazy(() => import('./components/Contact'))
 
@@ -45,6 +46,9 @@ function App() {
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <Exper />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Certificates />
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <Project />

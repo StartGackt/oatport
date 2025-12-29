@@ -42,7 +42,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div 
+          <div
             className={`order-2 lg:order-1 text-center lg:text-left transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             {/* Badge */}
@@ -89,7 +89,7 @@ const Hero = () => {
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
-              
+
               <a
                 href="#contact"
                 className="px-8 py-4 rounded-2xl border border-gray-700 text-gray-300 font-semibold hover:border-cyan-500/50 hover:bg-cyan-500/5 hover:text-cyan-400 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2"
@@ -102,11 +102,11 @@ const Hero = () => {
             {/* Stats */}
             <div className="flex gap-8 mt-14 justify-center lg:justify-start">
               {[
-                { value: '3+', label: 'Years Experience' },
+                { value: '1+', label: 'Years Experience' },
                 { value: '10+', label: 'Projects Completed' },
                 { value: '100%', label: 'Client Satisfaction' },
               ].map((stat, index) => (
-                <div 
+                <div
                   key={index}
                   className="text-center hover:-translate-y-1 transition-transform duration-200"
                 >
@@ -118,7 +118,7 @@ const Hero = () => {
           </div>
 
           {/* Right - Profile */}
-          <div 
+          <div
             className={`order-1 lg:order-2 flex justify-center transition-all duration-700 delay-150 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
           >
             <div className="relative">
@@ -131,7 +131,7 @@ const Hero = () => {
               <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
                 {/* Glow background */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-purple-500/15 to-pink-500/20 blur-2xl" />
-                
+
                 {/* Gradient border */}
                 <div className="absolute inset-0 rounded-full p-[3px] bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500">
                   <div className="w-full h-full rounded-full bg-[#0a0a12] p-2">
