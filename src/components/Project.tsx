@@ -4,7 +4,7 @@ import { HiOutlineSparkles } from 'react-icons/hi'
 import project1 from "../assets/projects/project-1.jpg"
 import project3 from "../assets/projects/project-3.jpg"
 import project4 from "../assets/projects/project-4.jpg"
-import project5 from "../assets/projects/porject-5.png"
+import project5 from "../assets/projects/project-5.png"
 
 const PROJECTS = [
   {

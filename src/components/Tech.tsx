@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { RiReactjsFill } from "react-icons/ri"
-import { SiAngular, SiDotnet, SiMicrosoftsqlserver, SiMysql, SiNextdotjs, SiPython, SiTypescript, SiTailwindcss, SiDocker, SiTensorflow, SiKubernetes, SiFirebase } from "react-icons/si"
+import { SiAngular, SiDotnet, SiMysql, SiNextdotjs, SiPython, SiTypescript, SiTailwindcss, SiDocker, SiTensorflow, SiKubernetes, SiFirebase, SiPostgresql } from "react-icons/si"
 import { HiOutlineSparkles } from 'react-icons/hi'
 
 const technologies = [
@@ -11,7 +11,7 @@ const technologies = [
   { icon: SiDotnet, name: '.NET', color: '#512BD4' },
   { icon: SiPython, name: 'Python', color: '#3776AB' },
   { icon: SiTensorflow, name: 'TensorFlow', color: '#FF6F00' },
-  { icon: SiMicrosoftsqlserver, name: 'SQL Server', color: '#CC2927' },
+  { icon: SiPostgresql, name: 'PostgreSQL', color: '#4169E1' },
   { icon: SiMysql, name: 'MySQL', color: '#4479A1' },
   { icon: SiDocker, name: 'Docker', color: '#2496ED' },
   { icon: SiKubernetes, name: 'Kubernetes', color: '#326CE5' },

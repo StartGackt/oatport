@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+/* Fonts are preloaded in index.html for faster loading */
 
 @tailwind base;
 @tailwind components;
@@ -396,4 +396,41 @@ h1, h2, h3, h4, h5, h6 {
   to {
     transform: translateX(100%);
   }
+}
+
+/* Performance-friendly animations for Hero */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float-badge 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-badge 5s ease-in-out infinite;
+  animation-delay: -1s;
+}
+
+.animate-float-slow {
+  animation: float-badge 4.5s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
 }
