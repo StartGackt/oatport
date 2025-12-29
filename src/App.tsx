@@ -1,25 +1,34 @@
-import { useMemo } from 'react'
-import About from './components/About'
-import Contact from './components/Contact'
-import Exper from './components/Exper'
+import { useMemo, lazy, Suspense } from 'react'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
-import Project from './components/Project'
-import Tech from './components/Tech'
 import './index.css'
 
+// Lazy load components below the fold for faster initial load
+const About = lazy(() => import('./components/About'))
+const Tech = lazy(() => import('./components/Tech'))
+const Exper = lazy(() => import('./components/Exper'))
+const Project = lazy(() => import('./components/Project'))
+const Contact = lazy(() => import('./components/Contact'))
+
+// Loading skeleton for lazy components
+const SectionLoader = () => (
+  <div className="py-32 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+  </div>
+)
+
 function App() {
-  // Pre-generate light particles once to avoid re-renders and random layout shifts
+  // Pre-generate minimal particles for performance
   const particles = useMemo(
     () =>
-      Array.from({ length: 18 }, () => ({
-        size: Math.random() * 2 + 2,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        color: Math.random() > 0.5 ? '0, 240, 255' : '124, 58, 237',
-        opacity: Math.random() * 0.4 + 0.2,
-        duration: 16 + Math.random() * 14,
-        delay: Math.random() * 10,
+      Array.from({ length: 8 }, (_, i) => ({
+        size: 2 + (i % 3),
+        left: (i * 12.5) % 100,
+        top: (i * 15) % 100,
+        color: i % 2 === 0 ? '0, 240, 255' : '124, 58, 237',
+        opacity: 0.3,
+        duration: 20 + i * 2,
+        delay: i * 1.5,
       })),
     []
   )
@@ -31,15 +40,12 @@ function App() {
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#050508] via-[#0a0a12] to-[#050508]" />
 
-        {/* Aurora blobs */}
-        <div className="absolute top-0 left-1/4 w-[1000px] h-[1000px] rounded-full morph-blob bg-gradient-to-r from-cyan-500/10 via-transparent to-transparent blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] rounded-full morph-blob bg-gradient-to-r from-purple-500/10 via-transparent to-transparent blur-[100px]" style={{ animationDelay: '-4s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full morph-blob bg-gradient-to-r from-pink-500/5 via-transparent to-transparent blur-[80px]" style={{ animationDelay: '-2s' }} />
+        {/* Aurora blobs - simplified for performance */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-cyan-500/8 blur-[80px]" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-purple-500/8 blur-[60px]" />
 
-        {/* Grid overlay */}
-        <div className="absolute inset-0 grid-pattern opacity-50" />
-        <div className="absolute inset-0 cyber-dots" />
-        <div className="absolute inset-0 cyber-scanlines" />
+        {/* Grid overlay - single layer for performance */}
+        <div className="absolute inset-0 grid-pattern opacity-30" />
 
         {/* Floating particles */}
         <div className="absolute inset-0">
@@ -71,11 +77,21 @@ function App() {
       {/* Main Content */}
       <main className="relative z-10">
         <Hero />
-        <About />
-        <Tech />
-        <Exper />
-        <Project />
-        <Contact />
+        <Suspense fallback={<SectionLoader />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Tech />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Exper />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Project />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Contact />
+        </Suspense>
       </main>
     </div>
   )
