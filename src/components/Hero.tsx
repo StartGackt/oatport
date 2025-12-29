@@ -83,10 +83,21 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-2xl sm:text-3xl text-gray-400 mb-8 h-10"
+              className="text-2xl sm:text-3xl text-gray-400 mb-6 h-10"
             >
               <span className="text-cyan-400">{displayText}</span>
               <span className="text-cyan-400 animate-pulse">|</span>
+            </motion.div>
+
+            {/* AI / Cyber badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-xl glass-card text-sm text-cyan-300 border border-cyan-500/30 shadow-lg shadow-cyan-500/10"
+            >
+              <HiOutlineSparkles className="text-cyan-400" />
+              AI + Cyber Ready Experiences
             </motion.div>
 
             {/* Description */}
@@ -183,7 +194,7 @@ const Hero = () => {
               </motion.div>
 
               {/* Main image container */}
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 cyber-card">
                 {/* Glow background */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/30 via-purple-500/20 to-pink-500/30 blur-3xl animate-pulse" />
                 
@@ -193,6 +204,8 @@ const Hero = () => {
                     <img
                       src={profilePic}
                       alt="Oat Srichainiwas"
+                      loading="eager"
+                      decoding="async"
                       className="w-full h-full rounded-full object-cover"
                     />
                   </div>

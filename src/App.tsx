@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import About from './components/About'
 import Contact from './components/Contact'
 import Exper from './components/Exper'
@@ -8,6 +9,21 @@ import Tech from './components/Tech'
 import './index.css'
 
 function App() {
+  // Pre-generate light particles once to avoid re-renders and random layout shifts
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 18 }, () => ({
+        size: Math.random() * 2 + 2,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        color: Math.random() > 0.5 ? '0, 240, 255' : '124, 58, 237',
+        opacity: Math.random() * 0.4 + 0.2,
+        duration: 16 + Math.random() * 14,
+        delay: Math.random() * 10,
+      })),
+    []
+  )
+
   return (
     <div className="min-h-screen bg-[#050508] text-gray-200 antialiased overflow-x-hidden noise">
       {/* Beautiful Animated Background */}
@@ -22,21 +38,23 @@ function App() {
 
         {/* Grid overlay */}
         <div className="absolute inset-0 grid-pattern opacity-50" />
+        <div className="absolute inset-0 cyber-dots" />
+        <div className="absolute inset-0 cyber-scanlines" />
 
         {/* Floating particles */}
         <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
+          {particles.map((particle, i) => (
             <div
               key={i}
-              className="absolute rounded-full"
+              className="absolute rounded-full will-change-transform"
               style={{
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                background: `rgba(${Math.random() > 0.5 ? '0, 240, 255' : '124, 58, 237'}, ${Math.random() * 0.5 + 0.2})`,
-                animation: `particle-float ${15 + Math.random() * 20}s linear infinite`,
-                animationDelay: `${Math.random() * 10}s`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                background: `rgba(${particle.color}, ${particle.opacity})`,
+                animation: `particle-float ${particle.duration}s linear infinite`,
+                animationDelay: `${particle.delay}s`,
               }}
             />
           ))}
