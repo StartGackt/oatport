@@ -27,6 +27,30 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
+    title: "Asia Plus Securities E-Service",
+    image: "/aisaplus.png",
+    description: "Enterprise financial platform featuring secure fund transfers, two-factor authentication, and automated notification system.",
+    link: "https://www.asiaplus.co.th",
+    technologies: ["Next.js", "OWASP Top 10"],
+    color: "from-blue-500 to-cyan-600",
+    featured: true,
+    fullDescription: "A robust enterprise financial services platform developed for Asia Plus Securities using Next.js with full server-side rendering capabilities. The system provides seamless securities and custodian account transfers supporting both domestic and international transactions. Key implementations include Two-Factor Authentication via Google Authenticator for enhanced security, optimized server-side utilities for cookie management, and dynamic HTML email templates for real-time transaction notifications. Built with OWASP Top 10 security standards to ensure data protection and regulatory compliance.",
+    role: "Full Stack Developer",
+    duration: "6 months",
+    challenges: [
+      "Architecting a multi-account transfer system supporting securities and custodian accounts",
+      "Integrating Two-Factor Authentication (Google Authenticator) for transaction security",
+      "Optimizing server-side utilities by removing client-side dependencies",
+      "Developing dynamic email notification templates for various transaction types"
+    ],
+    solutions: [
+      "Built comprehensive transfer APIs with robust validation for account numbers and types",
+      "Implemented secure 2FA flow with QR code generation and verification",
+      "Refactored cookie utilities for seamless server-side operation",
+      "Created reusable server-rendered email templates for domestic and international transfers"
+    ]
+  },
+  {
     title: "E-Commerce Platform",
     image: project3,
     description: "Full-featured e-commerce with AI recommendations, shopping cart, and secure authentication.",
@@ -351,7 +375,7 @@ const Project = () => {
             <HiOutlineSparkles className="text-cyan-400" />
             <span className="text-sm text-gray-400">Portfolio</span>
           </motion.div>
-          
+
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Featured </span>
             <span className="gradient-text">Projects</span>
@@ -389,7 +413,7 @@ const Project = () => {
                   {/* Gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-0 group-hover:opacity-40 transition-opacity duration-300`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent" />
-                  
+
                   {/* Hover overlay with links */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <motion.button

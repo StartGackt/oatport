@@ -1,21 +1,27 @@
 import { motion } from 'framer-motion'
-import { RiReactjsFill } from "react-icons/ri"
-import { SiAngular, SiDotnet, SiMysql, SiNextdotjs, SiPython, SiTypescript, SiTailwindcss, SiDocker, SiTensorflow, SiKubernetes, SiFirebase, SiPostgresql } from "react-icons/si"
+import { SiAngular, SiDotnet, SiNextdotjs, SiPython, SiTypescript, SiTailwindcss, SiDocker, SiTensorflow, SiPostgresql, SiOracle, SiLangchain, SiOpenai } from "react-icons/si"
 import { HiOutlineSparkles } from 'react-icons/hi'
+import { TbBrain, TbVectorBezier2, TbBrandAzure, TbDatabase } from 'react-icons/tb'
+import { BsDiagram3, BsBraces } from 'react-icons/bs'
 
 const technologies = [
-  { icon: RiReactjsFill, name: 'React', color: '#61DAFB' },
   { icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
   { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
   { icon: SiAngular, name: 'Angular', color: '#DD0031' },
   { icon: SiDotnet, name: '.NET', color: '#512BD4' },
   { icon: SiPython, name: 'Python', color: '#3776AB' },
+  { icon: SiOpenai, name: 'OpenAI', color: '#00A67E' },
+  { icon: SiLangchain, name: 'LangChain', color: '#1C3C3C' },
+  { icon: BsDiagram3, name: 'LangGraph', color: '#FF6B35' },
+  { icon: BsBraces, name: 'LlamaIndex', color: '#A855F7' },
+  { icon: TbBrain, name: 'Deep Learning', color: '#EC4899' },
   { icon: SiTensorflow, name: 'TensorFlow', color: '#FF6F00' },
+  { icon: TbVectorBezier2, name: 'RAG', color: '#FBBF24' },
+  { icon: TbBrandAzure, name: 'Azure', color: '#0078D4' },
+  { icon: SiOracle, name: 'Oracle', color: '#F80000' },
+  { icon: TbDatabase, name: 'SQL Server', color: '#CC2927' },
   { icon: SiPostgresql, name: 'PostgreSQL', color: '#4169E1' },
-  { icon: SiMysql, name: 'MySQL', color: '#4479A1' },
   { icon: SiDocker, name: 'Docker', color: '#2496ED' },
-  { icon: SiKubernetes, name: 'Kubernetes', color: '#326CE5' },
-  { icon: SiFirebase, name: 'Firebase', color: '#FFCA28' },
   { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4' },
 ]
 
@@ -43,7 +49,7 @@ const Tech = () => {
             <HiOutlineSparkles className="text-cyan-400" />
             <span className="text-sm text-gray-400">Tech Stack</span>
           </motion.div>
-          
+
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Tools & </span>
             <span className="gradient-text">Technologies</span>
@@ -67,21 +73,21 @@ const Tech = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.03 * index, type: 'spring', stiffness: 200 }}
-              whileHover={{ 
-                scale: 1.1, 
+              whileHover={{
+                scale: 1.1,
                 y: -10,
                 transition: { duration: 0.2 }
               }}
               className="group relative"
             >
-              <div 
+              <div
                 className="aspect-square rounded-2xl glass-card p-4 md:p-6 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer"
                 style={{
                   boxShadow: `0 0 0 1px ${tech.color}10`,
                 }}
               >
                 {/* Glow on hover */}
-                <div 
+                <div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
                     background: `radial-gradient(circle at center, ${tech.color}15 0%, transparent 70%)`,
@@ -90,9 +96,9 @@ const Tech = () => {
                 />
 
                 {/* Icon */}
-                <tech.icon 
-                  className="text-3xl md:text-4xl lg:text-5xl transition-all duration-300 relative z-10" 
-                  style={{ 
+                <tech.icon
+                  className="text-3xl md:text-4xl lg:text-5xl transition-all duration-300 relative z-10"
+                  style={{
                     color: tech.color,
                     filter: `drop-shadow(0 0 10px ${tech.color}50)`
                   }}
@@ -104,7 +110,7 @@ const Tech = () => {
                 </span>
 
                 {/* Hover border */}
-                <div 
+                <div
                   className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ borderColor: `${tech.color}40` }}
                 />
