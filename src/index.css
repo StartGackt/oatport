@@ -426,6 +426,87 @@ h1, h2, h3, h4, h5, h6 {
   animation-delay: -2s;
 }
 
+/* Orbit animations for badges */
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* Inner orbit - 3 badges evenly spaced (120° apart) */
+.animate-orbit {
+  animation: orbit 18s linear infinite;
+}
+
+.animate-orbit-2 {
+  animation: orbit 18s linear infinite;
+  animation-delay: -6s; /* 18s / 3 = 6s offset (120°) */
+}
+
+.animate-orbit-3 {
+  animation: orbit 18s linear infinite;
+  animation-delay: -12s; /* 12s offset (240°) */
+}
+
+.animate-counter-rotate {
+  animation: counter-rotate 18s linear infinite;
+}
+
+.animate-counter-rotate-2 {
+  animation: counter-rotate 18s linear infinite;
+  animation-delay: -6s;
+}
+
+.animate-counter-rotate-3 {
+  animation: counter-rotate 18s linear infinite;
+  animation-delay: -12s;
+}
+
+/* Outer orbit - 3 badges evenly spaced, opposite direction */
+@keyframes orbit-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes counter-rotate-reverse {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.animate-orbit-outer {
+  animation: orbit-reverse 24s linear infinite;
+  animation-delay: -4s; /* offset to not align with inner orbit */
+}
+
+.animate-orbit-outer-2 {
+  animation: orbit-reverse 24s linear infinite;
+  animation-delay: -12s; /* 24s / 3 = 8s apart, but offset by 4s */
+}
+
+.animate-orbit-outer-3 {
+  animation: orbit-reverse 24s linear infinite;
+  animation-delay: -20s;
+}
+
+.animate-counter-rotate-outer {
+  animation: counter-rotate-reverse 24s linear infinite;
+  animation-delay: -4s;
+}
+
+.animate-counter-rotate-outer-2 {
+  animation: counter-rotate-reverse 24s linear infinite;
+  animation-delay: -12s;
+}
+
+.animate-counter-rotate-outer-3 {
+  animation: counter-rotate-reverse 24s linear infinite;
+  animation-delay: -20s;
+}
+
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }

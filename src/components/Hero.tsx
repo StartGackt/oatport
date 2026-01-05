@@ -1,5 +1,8 @@
 import profilePic from '../assets/projects/hero.jpg'
-import { HiArrowDown, HiOutlineSparkles, HiOutlineLightningBolt } from 'react-icons/hi'
+import { HiArrowDown, HiOutlineSparkles } from 'react-icons/hi'
+import { SiOpenai, SiLangchain } from 'react-icons/si'
+import { BsStars, BsBraces, BsDiagram3 } from 'react-icons/bs'
+import { TbBrain } from 'react-icons/tb'
 import { FaPlay } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 
@@ -146,20 +149,69 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Floating badges - CSS animation only */}
-                <div className="absolute -right-2 top-1/4 px-4 py-2 rounded-xl glass-card shadow-xl animate-float">
-                  <span className="text-cyan-400 font-bold flex items-center gap-2">
-                    <HiOutlineLightningBolt className="icon-glow" />
-                    React
-                  </span>
-                </div>
+                {/* Orbiting badges container */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {/* Inner orbit ring */}
+                  {/* Orbit 1 - OpenAI */}
+                  <div className="absolute w-[125%] h-[125%] animate-orbit">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2 rounded-xl glass-card shadow-2xl border border-cyan-500/30 backdrop-blur-xl animate-counter-rotate">
+                      <span className="text-cyan-400 font-bold flex items-center gap-1.5 text-xs whitespace-nowrap">
+                        <SiOpenai className="text-base drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                        OpenAI
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="absolute -left-4 bottom-1/3 px-4 py-2 rounded-xl glass-card shadow-xl animate-float-delayed">
-                  <span className="text-purple-400 font-bold">.NET</span>
-                </div>
+                  {/* Orbit 2 - LangChain */}
+                  <div className="absolute w-[125%] h-[125%] animate-orbit-2">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2 rounded-xl glass-card shadow-2xl border border-emerald-500/30 backdrop-blur-xl animate-counter-rotate-2">
+                      <span className="text-emerald-400 font-bold flex items-center gap-1.5 text-xs whitespace-nowrap">
+                        <SiLangchain className="text-base drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                        LangChain
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="absolute right-4 bottom-8 px-4 py-2 rounded-xl glass-card shadow-xl animate-float-slow">
-                  <span className="text-pink-400 font-bold">AI/ML</span>
+                  {/* Orbit 3 - LangGraph */}
+                  <div className="absolute w-[125%] h-[125%] animate-orbit-3">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2 rounded-xl glass-card shadow-2xl border border-orange-500/30 backdrop-blur-xl animate-counter-rotate-3">
+                      <span className="text-orange-400 font-bold flex items-center gap-1.5 text-xs whitespace-nowrap">
+                        <BsDiagram3 className="text-base drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
+                        LangGraph
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Outer orbit ring */}
+                  {/* Orbit 4 - LlamaIndex */}
+                  <div className="absolute w-[160%] h-[160%] animate-orbit-outer">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2 rounded-xl glass-card shadow-2xl border border-purple-500/30 backdrop-blur-xl animate-counter-rotate-outer">
+                      <span className="text-purple-400 font-bold flex items-center gap-1.5 text-xs whitespace-nowrap">
+                        <BsBraces className="text-base drop-shadow-[0_0_8px_rgba(192,132,252,0.8)]" />
+                        LlamaIndex
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Orbit 5 - Deep Learning */}
+                  <div className="absolute w-[160%] h-[160%] animate-orbit-outer-2">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2 rounded-xl glass-card shadow-2xl border border-pink-500/30 backdrop-blur-xl animate-counter-rotate-outer-2">
+                      <span className="text-pink-400 font-bold flex items-center gap-1.5 text-xs whitespace-nowrap">
+                        <TbBrain className="text-base drop-shadow-[0_0_8px_rgba(244,114,182,0.8)]" />
+                        Deep Learning
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Orbit 6 - RAG */}
+                  <div className="absolute w-[160%] h-[160%] animate-orbit-outer-3">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-2 rounded-xl glass-card shadow-2xl border border-yellow-500/30 backdrop-blur-xl animate-counter-rotate-outer-3">
+                      <span className="text-yellow-400 font-bold flex items-center gap-1.5 text-xs whitespace-nowrap">
+                        <BsStars className="text-base drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]" />
+                        RAG
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
